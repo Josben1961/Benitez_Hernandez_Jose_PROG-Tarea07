@@ -1,49 +1,65 @@
-/*
- * 
- */
+
 package alquilerVehiculos.mvc.modelo.dao;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import alquilerVehiculos.mvc.modelo.dominio.Alquiler;
 import alquilerVehiculos.mvc.modelo.dominio.Cliente;
 import alquilerVehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 import alquilerVehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class Alquileres.
- */
 public class Alquileres {
 
-	/** The alquileres. */
 	private Alquiler[] alquileres;
 
-	/** The max alquileres. */
 	private final int MAX_ALQUILERES = 100;
-
-	/**
-	 * Instantiates a new alquileres.
-	 */
+	private final String FICHERO_ALQUILERES = "datos/alquileres.dat";
 	public Alquileres() {
 		alquileres = new Alquiler[MAX_ALQUILERES];
 	}
 
-	/**
-	 * Gets the alquileres.
-	 *
-	 * @return the alquileres
-	 */
 	public Alquiler[] getAlquileres() {
 		return alquileres.clone();
 	}
+	
+	public void leerAlquileres() {
+		File fichero = new File(FICHERO_ALQUILERES);
+		ObjectInputStream entrada;
+		try {
+			entrada = new ObjectInputStream(new FileInputStream(fichero));
+			try {
+				alquileres = (Alquiler[])entrada.readObject();
+				entrada.close();
+				System.out.println("Leído correctamente fichero alquileres.");
+			} catch (ClassNotFoundException e) {
+				System.out.println("No puedo encontrar la clase que tengo que leer.");
+			} catch (IOException e) {
+				System.out.println("Error inesperado de Entrada/Salida.");
+			}
+		} catch (IOException e) {
+			System.out.println("Imposible abrir el fihero de alquileres.");
+		}
+	}
+	
+	public void escribirTrabajos() {
+		File fichero = new File(FICHERO_ALQUILERES);
+		try {
+			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(fichero));
+			salida.writeObject((Alquiler[])alquileres);
+			salida.close();
+			System.out.println("Escrito correctamente fichero alquileres");
+		} catch (FileNotFoundException e) {
+			System.out.println("Imposible crear el fichero de alquileres");
+		} catch (IOException e) {
+			System.out.println("Error inesperado de Entrada/Salida");
+		}
+	}
 
-	/**
-	 * Abrir alquiler.
-	 *
-	 * @param cliente
-	 *            the cliente
-	 * @param vehiculo
-	 *            the vehiculo
-	 */
 	public void abrirAlquiler(Cliente cliente, Vehiculo vehiculo) {
 		int indice = buscarPrimerIndiceLibreComprobandoExistenciaOtroAbierto(vehiculo);
 		if (indiceNoSuperaTamano(indice))
@@ -52,13 +68,6 @@ public class Alquileres {
 			throw new ExcepcionAlquilerVehiculos("El array de alquileres está lleno.");
 	}
 
-	/**
-	 * Buscar primer indice libre comprobando existencia otro abierto.
-	 *
-	 * @param vehiculo
-	 *            the vehiculo
-	 * @return the int
-	 */
 	private int buscarPrimerIndiceLibreComprobandoExistenciaOtroAbierto(Vehiculo vehiculo) {
 		int indice = 0;
 		boolean encontrado = false;
@@ -74,25 +83,10 @@ public class Alquileres {
 		return indice;
 	}
 
-	/**
-	 * Indice no supera tamaño.
-	 *
-	 * @param indice
-	 *            the indice
-	 * @return true, if successful
-	 */
 	private boolean indiceNoSuperaTamano(int indice) {
 		return indice < alquileres.length;
 	}
 
-	/**
-	 * Cerrar alquiler.
-	 *
-	 * @param cliente
-	 *            the cliente
-	 * @param vehiculo
-	 *            the vehiculo
-	 */
 	public void cerrarAlquiler(Cliente cliente, Vehiculo vehiculo) {
 		int indice = buscarAlquilerAbierto(cliente, vehiculo);
 		if (indiceNoSuperaTamano(indice)) {
@@ -103,15 +97,6 @@ public class Alquileres {
 		}
 	}
 
-	/**
-	 * Buscar alquiler abierto.
-	 *
-	 * @param cliente
-	 *            the cliente
-	 * @param vehiculo
-	 *            the vehiculo
-	 * @return the int
-	 */
 	private int buscarAlquilerAbierto(Cliente cliente, Vehiculo vehiculo) {
 		int indice = 0;
 		boolean alquilerEncontrado = false;
