@@ -31,4 +31,18 @@ public interface IModeloAlquilerVehiculos {
 	void cerrarAlquiler(Cliente cliente, Vehiculo vehiculo);
 
 	Alquiler[] obtenerAlquileres();
+	
+	void leerClientes();
+	
+	void escribirClientes();
+	
+	void leerVehiculos();
+	
+	void escribirVehiculos();
+	
+	void escribirAlquileres();
+
+	void leerAlquileres();
+
+	
 }

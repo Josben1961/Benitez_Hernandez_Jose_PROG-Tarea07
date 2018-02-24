@@ -79,4 +79,36 @@ public class ModeloAlquilerVehiculos implements IModeloAlquilerVehiculos {
 	public Alquiler[] obtenerAlquileres() {
 		return alquileres.getAlquileres();
 	}
+	@Override
+	public void leerClientes() {
+		clientes.leerClientes();
+	}
+
+	@Override
+	public void escribirClientes() {
+		clientes.escribirClientes();		
+	}
+
+	@Override
+	public void leerVehiculos() {
+		vehiculos.leerVehiculos();
+	}
+
+	@Override
+	public void escribirVehiculos() {
+		vehiculos.escribirVehiculos();
+	}
+
+	@Override
+	public void leerAlquileres() {
+		alquileres.leerAlquileres();
+	}
+
+	@Override
+	public void escribirAlquileres() {
+		alquileres.escribirTrabajos();
+	}
+
 }
+
+
