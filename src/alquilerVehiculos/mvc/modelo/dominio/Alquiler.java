@@ -3,6 +3,7 @@
  */
 package alquilerVehiculos.mvc.modelo.dominio;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,7 +16,7 @@ import alquilerVehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 /**
  * The Class Alquiler.
  */
-public class Alquiler {
+public class Alquiler implements Serializable{
 
 	/** The cliente. */
 	private Cliente cliente;
