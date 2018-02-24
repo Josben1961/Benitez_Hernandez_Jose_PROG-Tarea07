@@ -1,8 +1,7 @@
-/*
- * 
- */
+
 package alquilerVehiculos.mvc.modelo.dominio.vehiculo;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,7 +12,7 @@ import alquilerVehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 /**
  * The Class Vehiculo.
  */
-public abstract class Vehiculo {
+public abstract class Vehiculo implements Serializable {
 
 	/** The matricula. */
 	private String matricula;
