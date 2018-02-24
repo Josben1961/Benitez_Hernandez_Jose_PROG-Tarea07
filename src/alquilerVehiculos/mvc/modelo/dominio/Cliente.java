@@ -3,6 +3,7 @@
  */
 package alquilerVehiculos.mvc.modelo.dominio;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,7 +11,7 @@ import java.util.regex.Pattern;
 /**
  * The Class Cliente.
  */
-public class Cliente {
+public class Cliente implements Serializable{
 
 	/** The nombre. */
 	private String nombre;
