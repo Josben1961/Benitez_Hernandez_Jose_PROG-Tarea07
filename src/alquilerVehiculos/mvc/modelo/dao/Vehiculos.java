@@ -1,48 +1,65 @@
-/*
- * 
- */
+
 package alquilerVehiculos.mvc.modelo.dao;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
 
 import alquilerVehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 import alquilerVehiculos.mvc.modelo.dominio.vehiculo.TipoVehiculo;
 import alquilerVehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class Vehiculos.
- */
 public class Vehiculos {
 
-	/** The vehiculos. */
 	private Vehiculo[] vehiculos;
 
-	/** The max vehiculos. */
 	private final int MAX_VEHICULOS = 100;
-
-	/**
-	 * Instantiates a new vehiculos.
-	 */
+	private final String FICHERO_VEHICULOS = "datos/vehiculos.dat";
+	
 	public Vehiculos() {
 		vehiculos = new Vehiculo[MAX_VEHICULOS];
 	}
 
-	/**
-	 * Gets the vehiculos.
-	 *
-	 * @return the vehiculos
-	 */
 	public Vehiculo[] getVehiculos() {
 		return vehiculos.clone();
 	}
+	
+	public void leerVehiculos() {
+		File fichero = new File(FICHERO_VEHICULOS);
+		ObjectInputStream entrada;
+		try {
+			entrada = new ObjectInputStream(new FileInputStream(fichero));
+			try {
+				vehiculos = (Vehiculo[])entrada.readObject();
+				entrada.close();
+				System.out.println("Leido fichero vehiculos correctamente.");
+			} catch (ClassNotFoundException e) {
+				System.out.println("No puedo encontrar la clase que tengo que leer.");
+			} catch (IOException e) {
+				System.out.println("Error inesperado de Entrada/Salida.");
+			}
+		} catch (IOException e) {
+			System.out.println("Imposible abrir el fihero de vehículos.");
+		}
+	}
+	public void escribirVehiculos() {
+		File fichero = new File(FICHERO_VEHICULOS);
+		try {
+			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(fichero));
+			salida.writeObject((Vehiculo[])vehiculos);
+			salida.close();
+			System.out.println("Escrito fichero vehiculos correctamente");
+		} catch (FileNotFoundException e) {
+			System.out.println("Imposible crear el fichero de vehículos");
+		} catch (IOException e) {
+			System.out.println("Error inesperado de Entrada/Salida");
+		}
+	}
 
-	/**
-	 * Anadir vehiculo.
-	 *
-	 * @param vehiculo
-	 *            the vehiculo
-	 * @param tipoVehiculo
-	 *            the tipo vehiculo
-	 */
 	public void anadirVehiculo(Vehiculo vehiculo, TipoVehiculo tipoVehiculo) {
 		int indice = buscarPrimerIndiceLibreComprobandoExistencia(vehiculo);
 		if (indiceNoSuperaTamano(indice)) {
@@ -54,13 +71,6 @@ public class Vehiculos {
 			throw new ExcepcionAlquilerVehiculos("El array de vehículos está lleno.");
 	}
 
-	/**
-	 * Buscar primer indice libre comprobando existencia.
-	 *
-	 * @param vehiculo
-	 *            the vehiculo
-	 * @return the int
-	 */
 	private int buscarPrimerIndiceLibreComprobandoExistencia(Vehiculo vehiculo) {
 		int indice = 0;
 		boolean vehiculoEncontrado = false;
@@ -75,23 +85,10 @@ public class Vehiculos {
 		return indice;
 	}
 
-	/**
-	 * Indice no supera tamano.
-	 *
-	 * @param indice
-	 *            the indice
-	 * @return true, if successful
-	 */
 	private boolean indiceNoSuperaTamano(int indice) {
 		return indice < vehiculos.length;
 	}
 
-	/**
-	 * Borrar vehiculo.
-	 *
-	 * @param matricula
-	 *            the matricula
-	 */
 	public void borrarVehiculo(String matricula) {
 		int indice = buscarIndiceVehiculo(matricula);
 		if (indiceNoSuperaTamano(indice)) {
@@ -101,13 +98,6 @@ public class Vehiculos {
 		}
 	}
 
-	/**
-	 * Buscar indice vehiculo.
-	 *
-	 * @param matricula
-	 *            the matricula
-	 * @return the int
-	 */
 	private int buscarIndiceVehiculo(String matricula) {
 		int indice = 0;
 		boolean vehiculoEncontrado = false;
@@ -120,25 +110,12 @@ public class Vehiculos {
 		return vehiculoEncontrado ? indice : vehiculos.length;
 	}
 
-	/**
-	 * Desplazar una posicion hacia izquierda.
-	 *
-	 * @param indice
-	 *            the indice
-	 */
 	private void desplazarUnaPosicionHaciaIzquierda(int indice) {
 		for (int i = indice; i < vehiculos.length - 1 && vehiculos[i] != null; i++) {
 			vehiculos[i] = vehiculos[i + 1];
 		}
 	}
 
-	/**
-	 * Buscar vehiculo.
-	 *
-	 * @param matricula
-	 *            the matricula
-	 * @return the vehiculo
-	 */
 	public Vehiculo buscarVehiculo(String matricula) {
 		int indice = buscarIndiceVehiculo(matricula);
 		Vehiculo vehiculo = null;
