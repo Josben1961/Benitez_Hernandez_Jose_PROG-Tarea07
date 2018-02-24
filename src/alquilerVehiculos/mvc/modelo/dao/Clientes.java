@@ -1,45 +1,74 @@
-/*
- * 
- */
+
 package alquilerVehiculos.mvc.modelo.dao;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import alquilerVehiculos.mvc.modelo.dominio.Cliente;
 import alquilerVehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class Clientes.
- */
+
 public class Clientes {
 
-	/** The max clientes. */
 	private final int MAX_CLIENTES = 100;
-
-	/** The clientes. */
+	private final String FICHERO_CLIENTES = "datos/clientes.dat";
 	private Cliente[] clientes;
 
-	/**
-	 * Instantiates a new clientes.
-	 */
 	public Clientes() {
 		clientes = new Cliente[MAX_CLIENTES];
 	}
 
-	/**
-	 * Gets the clientes.
-	 *
-	 * @return the clientes
-	 */
 	public Cliente[] getClientes() {
 		return clientes.clone();
 	}
+	
+	public void leerClientes() {
+		File fichero = new File(FICHERO_CLIENTES);
+		ObjectInputStream entrada;
+		try {
+			entrada = new ObjectInputStream(new FileInputStream(fichero));
+			try {
+				clientes = (Cliente[])entrada.readObject();
+				entrada.close();
+				System.out.println("Fichero clientes leído satisfactoriamente.");
+				Cliente.aumentarUltimoIdentificador(calcularUltimoIdentificador());
+			} catch (ClassNotFoundException e) {
+				System.out.println("No puedo encontrar la clase que tengo que leer.");
+			} catch (IOException e) {
+				System.out.println("Error inesperado de Entrada/Salida.");
+			}
+		} catch (IOException e) {
+			System.out.println("No puedo abrir el fihero de clientes.");
+		}
+	}
+	private int calcularUltimoIdentificador() {
+		int ultimoIdentificador = 0;
+		int i = 0;
+		while (clientes[i] != null) {
+			if (clientes[i].getIdentificador() > ultimoIdentificador)
+				ultimoIdentificador = clientes[i].getIdentificador();
+		}
+		return ultimoIdentificador;
+	}
+	
+	public void escribirClientes() {
+		File fichero = new File(FICHERO_CLIENTES);
+		try {
+			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(fichero));
+			salida.writeObject((Cliente[])clientes);
+			salida.close();
+			System.out.println("Fichero clientes escrito satisfactoriamente.");
+		} catch (FileNotFoundException e) {
+			System.out.println("No puedo crear el fichero de clientes");
+		} catch (IOException e) {
+			System.out.println("Error inesperado de Entrada/Salida");
+		}
+	}
 
-	/**
-	 * Anadir cliente.
-	 *
-	 * @param cliente
-	 *            the cliente
-	 */
 	public void anadirCliente(Cliente cliente) {
 		int indice = buscarPrimerIndiceLibreComprobandoExistencia(cliente);
 		if (indiceNoSuperaTamano(indice))
@@ -48,13 +77,6 @@ public class Clientes {
 			throw new ExcepcionAlquilerVehiculos("El array de clientes está lleno.");
 	}
 
-	/**
-	 * Buscar primer indice libre comprobando existencia.
-	 *
-	 * @param cliente
-	 *            the cliente
-	 * @return the int
-	 */
 	private int buscarPrimerIndiceLibreComprobandoExistencia(Cliente cliente) {
 		int indice = 0;
 		boolean clienteEncontrado = false;
@@ -69,23 +91,10 @@ public class Clientes {
 		return indice;
 	}
 
-	/**
-	 * Indice no supera tamano.
-	 *
-	 * @param indice
-	 *            the indice
-	 * @return true, if successful
-	 */
 	private boolean indiceNoSuperaTamano(int indice) {
 		return indice < clientes.length;
 	}
 
-	/**
-	 * Borrar cliente.
-	 *
-	 * @param dni
-	 *            the dni
-	 */
 	public void borrarCliente(String dni) {
 		int indice = buscarIndiceCliente(dni);
 		if (indiceNoSuperaTamano(indice)) {
@@ -95,13 +104,6 @@ public class Clientes {
 		}
 	}
 
-	/**
-	 * Buscar indice cliente.
-	 *
-	 * @param dni
-	 *            the dni
-	 * @return the int
-	 */
 	private int buscarIndiceCliente(String dni) {
 		int indice = 0;
 		boolean clienteEncontrado = false;
@@ -114,25 +116,12 @@ public class Clientes {
 		return indice;
 	}
 
-	/**
-	 * Desplazar una posicion hacia izquierda.
-	 *
-	 * @param indice
-	 *            the indice
-	 */
 	private void desplazarUnaPosicionHaciaIzquierda(int indice) {
 		for (int i = indice; i < clientes.length - 1 && clientes[i] != null; i++) {
 			clientes[i] = clientes[i + 1];
 		}
 	}
 
-	/**
-	 * Buscar cliente.
-	 *
-	 * @param dni
-	 *            the dni
-	 * @return the cliente
-	 */
 	public Cliente buscarCliente(String dni) {
 		int posicion = buscarIndiceCliente(dni);
 		if (indiceNoSuperaTamano(posicion))
