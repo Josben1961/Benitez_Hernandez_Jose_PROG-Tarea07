@@ -1,6 +1,4 @@
-/*
- * 
- */
+
 package alquilerVehiculos.mvc.vista;
 
 import alquilerVehiculos.mvc.modelo.dominio.Cliente;
@@ -11,33 +9,19 @@ import alquilerVehiculos.mvc.controlador.IControladorAlquilerVehiculos;
 import alquilerVehiculos.mvc.modelo.dominio.Alquiler;
 import alquilerVehiculos.mvc.vista.utilidades.Consola;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class IUTextual.
- */
+
 public class IUTextual implements IVistaAlquilerVehiculos {
 
-	/** The controlador. */
 	IControladorAlquilerVehiculos controlador;
 
-	/**
-	 * Instantiates a new IU textual.
-	 */
 	public IUTextual() {
 		Opcion.setVista(this);
 	}
 
-	/*
-	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#setControlador(
-	 * alquilerVehiculos.mvc.controlador.IControladorAlquilerVehiculos)
-	 */
 	public void setControlador(IControladorAlquilerVehiculos controlador) {
 		this.controlador = controlador;
 	}
 
-	/*
-	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#comenzar()
-	 */
 	public void comenzar() {
 		int ordinalOpcion;
 		do {
@@ -48,16 +32,11 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		} while (ordinalOpcion != Opcion.SALIR.ordinal());
 	}
 
-	/*
-	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#salir()
-	 */
 	public void salir() {
 		System.out.println("Ha elegido salir de la aplicación");
+		controlador.salir();
 	}
 
-	/*
-	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#anadirCliente()
-	 */
 	public void anadirCliente() {
 		Consola.mostrarCabecera("Añadir cliente");
 		try {
@@ -69,9 +48,6 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		}
 	}
 
-	/*
-	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#borrarCliente()
-	 */
 	public void borrarCliente() {
 		Consola.mostrarCabecera("Borrar cliente");
 		String dni = Consola.leerDni();
@@ -83,9 +59,6 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		}
 	}
 
-	/*
-	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#buscarCliente()
-	 */
 	public void buscarCliente() {
 		Consola.mostrarCabecera("Buscar cliente");
 		String dni = Consola.leerDni();
@@ -94,9 +67,6 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		System.out.printf("%s%n%n", mensaje);
 	}
 
-	/*
-	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#listarClientes()
-	 */
 	public void listarClientes() {
 		Consola.mostrarCabecera("Listar clientes");
 		for (Cliente cliente : controlador.obtenerClientes()) {
@@ -106,9 +76,6 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		System.out.println("");
 	}
 
-	/*
-	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#anadirVehiculo()
-	 */
 	public void anadirVehiculo() {
 		Consola.mostrarCabecera("Añadir vehículo");
 		int ordinalTipo = Consola.elegirTipoVehiculo();
@@ -122,9 +89,6 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		}
 	}
 
-	/*
-	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#borrarVehiculo()
-	 */
 	public void borrarVehiculo() {
 		Consola.mostrarCabecera("Borrar vehículo");
 		String matricula = Consola.leerMatricula();
@@ -136,9 +100,6 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		}
 	}
 
-	/*
-	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#buscarVehiculo()
-	 */
 	public void buscarVehiculo() {
 		Consola.mostrarCabecera("Buscar vehículo");
 		String matricula = Consola.leerMatricula();
@@ -147,9 +108,6 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		System.out.printf("%s%n%n", mensaje);
 	}
 
-	/*
-	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#listarVehiculos()
-	 */
 	public void listarVehiculos() {
 		Consola.mostrarCabecera("Listar vehículos");
 		for (Vehiculo vehiculo : controlador.obtenerVehiculos()) {
@@ -159,9 +117,6 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		System.out.println("");
 	}
 
-	/*
-	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#abrirAlquiler()
-	 */
 	public void abrirAlquiler() {
 		Consola.mostrarCabecera("Abrir alquiler");
 		String matricula = Consola.leerMatricula();
@@ -180,9 +135,6 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		}
 	}
 
-	/*
-	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#cerrarAlquiler()
-	 */
 	public void cerrarAlquiler() {
 		Consola.mostrarCabecera("Cerrar alquiler");
 		String matricula = Consola.leerMatricula();
@@ -201,9 +153,6 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		}
 	}
 
-	/*
-	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#listarAlquileres()
-	 */
 	public void listarAlquileres() {
 		Consola.mostrarCabecera("Listar Alquileres");
 		for (Alquiler alquiler : controlador.obtenerAlquileres()) {

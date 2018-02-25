@@ -21,7 +21,15 @@ public class ControladorAlquilerVehiculos implements IControladorAlquilerVehicul
 	}
 
 	public void comenzar() {
+		modelo.leerClientes();
+		modelo.leerVehiculos();
+		modelo.leerAlquileres();
 		vista.comenzar();
+	}
+	public void salir() {
+		modelo.escribirClientes();
+		modelo.escribirVehiculos();
+		modelo.escribirAlquileres();
 	}
 
 	public void anadirCliente(Cliente cliente) {
