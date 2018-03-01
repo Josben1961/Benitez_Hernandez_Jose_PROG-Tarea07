@@ -3,6 +3,7 @@
  */
 package alquilerVehiculos.mvc.modelo.dominio;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,7 +11,9 @@ import java.util.regex.Pattern;
 /**
  * The Class DireccionPostal.
  */
-public class DireccionPostal {
+public class DireccionPostal implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	/** The calle. */
 	private String calle;
@@ -90,7 +93,7 @@ public class DireccionPostal {
 		if (localidad != null && !localidad.equals(""))
 			this.localidad = localidad;
 		else
-			throw new ExcepcionAlquilerVehiculos("Localidad no válida");
+			throw new ExcepcionAlquilerVehiculos("Localidad no vï¿½lida");
 	}
 
 	/**
@@ -112,7 +115,7 @@ public class DireccionPostal {
 		if (compruebaCodigoPostal(codigoPostal))
 			this.codigoPostal = codigoPostal;
 		else
-			throw new ExcepcionAlquilerVehiculos("El formato del código no es válido");
+			throw new ExcepcionAlquilerVehiculos("El formato del cï¿½digo no es vï¿½lido");
 	}
 
 	/**
@@ -131,10 +134,13 @@ public class DireccionPostal {
 		return emparejador.matches();
 	}
 
+	/* (sin Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	/*
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return String.format("Calle: %s Localidad: %s Código Postal: %s", calle, localidad, codigoPostal);
+		return String.format("Calle: %s Localidad: %s Cï¿½digo Postal: %s", calle, localidad, codigoPostal);
 	}
 }

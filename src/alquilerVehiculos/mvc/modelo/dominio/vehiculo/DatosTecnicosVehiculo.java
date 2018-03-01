@@ -2,35 +2,32 @@
  * 
  */
 package alquilerVehiculos.mvc.modelo.dominio.vehiculo;
-
+import java.io.Serializable;
 import alquilerVehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class DatosTecnicosVehiculo.
  */
-public class DatosTecnicosVehiculo {
-	
-	/** The cilindrada. */
+public class DatosTecnicosVehiculo implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	/** Atributos. */
 	private int cilindrada;
-	
-	/** The numero plazas. */
 	private int numeroPlazas;
-	
-	/** The pma. */
 	private int pma;
-	
+
 	/**
-	 * Instantiates a new datos tecnicos vehiculo.
+	 * Instancia de nuevo datos técnicos vehículo.
 	 *
 	 * @param datosTecnicos the datos tecnicos
 	 */
 	public DatosTecnicosVehiculo(DatosTecnicosVehiculo datosTecnicos) {
-		cilindrada= datosTecnicos.getCilindrada();
-		numeroPlazas=datosTecnicos.getNumeroPlazas();
-		pma= datosTecnicos.getPma();
+		cilindrada = datosTecnicos.getCilindrada();
+		numeroPlazas = datosTecnicos.getNumeroPlazas();
+		pma = datosTecnicos.getPma();
 	}
-	
+
 	/**
 	 * Instantiates a new datos tecnicos vehiculo.
 	 *
@@ -39,10 +36,10 @@ public class DatosTecnicosVehiculo {
 	 * @param pma the pma
 	 */
 	public DatosTecnicosVehiculo(int cilindrada, int numeroPlazas, int pma) {
-		
+
 		setCilindrada(cilindrada);
 		setNumeroPlazas(numeroPlazas);
-		setPma(pma);				
+		setPma(pma);
 	}
 
 	/**
@@ -63,7 +60,7 @@ public class DatosTecnicosVehiculo {
 		if (cilindrada > 0)
 			this.cilindrada = cilindrada;
 		else
-			throw new ExcepcionAlquilerVehiculos("Cilindrada no v�lida");
+			throw new ExcepcionAlquilerVehiculos("Cilindrada no válida");
 	}
 
 	/**
@@ -102,17 +99,13 @@ public class DatosTecnicosVehiculo {
 		this.pma = pma;
 	}
 
-	/* 
+	/*
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return " [Cilindrada = " + getCilindrada() + ", NumeroPlazas = " + getNumeroPlazas()
-				+ ", Pma = " + getPma() + "]";
+		return " [Cilindrada = " + getCilindrada() + ", NumeroPlazas = " + getNumeroPlazas() + ", Pma = " + getPma()
+				+ "]";
 	}
-
-	
-	
-	
 
 }
