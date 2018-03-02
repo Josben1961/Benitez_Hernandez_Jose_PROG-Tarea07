@@ -9,19 +9,32 @@ import alquilerVehiculos.mvc.controlador.IControladorAlquilerVehiculos;
 import alquilerVehiculos.mvc.modelo.dominio.Alquiler;
 import alquilerVehiculos.mvc.vista.utilidades.Consola;
 
-
+// TODO: Auto-generated Javadoc
+/**
+ * The Class IUTextual.
+ */
 public class IUTextual implements IVistaAlquilerVehiculos {
 
+	/** The controlador. */
 	IControladorAlquilerVehiculos controlador;
 
+	/**
+	 * Instantiates a new IU textual.
+	 */
 	public IUTextual() {
 		Opcion.setVista(this);
 	}
 
+	/* (sin Javadoc)
+	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#setControlador(alquilerVehiculos.mvc.controlador.IControladorAlquilerVehiculos)
+	 */
 	public void setControlador(IControladorAlquilerVehiculos controlador) {
 		this.controlador = controlador;
 	}
 
+	/* (sin Javadoc)
+	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#comenzar()
+	 */
 	public void comenzar() {
 		int ordinalOpcion;
 		do {
@@ -32,22 +45,31 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		} while (ordinalOpcion != Opcion.SALIR.ordinal());
 	}
 
+	/* (sin Javadoc)
+	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#salir()
+	 */
 	public void salir() {
-		System.out.println("Ha elegido salir de la aplicaci�n");
+		System.out.println("Ha elegido salir de la aplicación");
 		controlador.salir();
 	}
 
+	/* (sin Javadoc)
+	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#anadirCliente()
+	 */
 	public void anadirCliente() {
-		Consola.mostrarCabecera("A�adir cliente");
+		Consola.mostrarCabecera("Añadir cliente");
 		try {
 			Cliente cliente = Consola.leerCliente();
 			controlador.anadirCliente(cliente);
-			System.out.println("Cliente a�adido satisfactoriamente\n");
+			System.out.println("Cliente añadido satisfactoriamente\n");
 		} catch (ExcepcionAlquilerVehiculos e) {
 			System.out.printf("ERROR: %s%n%n", e.getMessage());
 		}
 	}
 
+	/* (sin Javadoc)
+	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#borrarCliente()
+	 */
 	public void borrarCliente() {
 		Consola.mostrarCabecera("Borrar cliente");
 		String dni = Consola.leerDni();
@@ -59,6 +81,9 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		}
 	}
 
+	/* (sin Javadoc)
+	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#buscarCliente()
+	 */
 	public void buscarCliente() {
 		Consola.mostrarCabecera("Buscar cliente");
 		String dni = Consola.leerDni();
@@ -67,6 +92,9 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		System.out.printf("%s%n%n", mensaje);
 	}
 
+	/* (sin Javadoc)
+	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#listarClientes()
+	 */
 	public void listarClientes() {
 		Consola.mostrarCabecera("Listar clientes");
 		for (Cliente cliente : controlador.obtenerClientes()) {
@@ -76,40 +104,52 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		System.out.println("");
 	}
 
+	/* (sin Javadoc)
+	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#anadirVehiculo()
+	 */
 	public void anadirVehiculo() {
-		Consola.mostrarCabecera("A�adir veh�culo");
+		Consola.mostrarCabecera("Añadir vehículo");
 		int ordinalTipo = Consola.elegirTipoVehiculo();
 		try {
 			Vehiculo vehiculo = Consola.leerVehiculo();
 			controlador.anadirVehiculo(vehiculo, TipoVehiculo.getTipoVehiculoSegunOrdinal(ordinalTipo));
 			;
-			System.out.println("Veh�culo a�adido satisfactoriamente\n");
+			System.out.println("Vehículo añadido satisfactoriamente\n");
 		} catch (ExcepcionAlquilerVehiculos e) {
 			System.out.printf("ERROR: %s%n%n", e.getMessage());
 		}
 	}
 
+	/* (sin Javadoc)
+	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#borrarVehiculo()
+	 */
 	public void borrarVehiculo() {
-		Consola.mostrarCabecera("Borrar veh�culo");
+		Consola.mostrarCabecera("Borrar vehículo");
 		String matricula = Consola.leerMatricula();
 		try {
 			controlador.borrarVehiculo(matricula);
-			System.out.println("Turismo borrado satisfactoriamente\n");
+			System.out.println("Vehículo borrado satisfactoriamente\n");
 		} catch (ExcepcionAlquilerVehiculos e) {
 			System.out.printf("ERROR: %s%n%n", e.getMessage());
 		}
 	}
 
+	/* (sin Javadoc)
+	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#buscarVehiculo()
+	 */
 	public void buscarVehiculo() {
-		Consola.mostrarCabecera("Buscar veh�culo");
+		Consola.mostrarCabecera("Buscar vehículo");
 		String matricula = Consola.leerMatricula();
 		Vehiculo vehiculoBuscado = controlador.buscarVehiculo(matricula);
-		String mensaje = (vehiculoBuscado != null) ? vehiculoBuscado.toString() : "El veh�culo no existe";
+		String mensaje = (vehiculoBuscado != null) ? vehiculoBuscado.toString() : "El vehículo no existe";
 		System.out.printf("%s%n%n", mensaje);
 	}
 
+	/* (sin Javadoc)
+	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#listarVehiculos()
+	 */
 	public void listarVehiculos() {
-		Consola.mostrarCabecera("Listar veh�culos");
+		Consola.mostrarCabecera("Listar vehículos");
 		for (Vehiculo vehiculo : controlador.obtenerVehiculos()) {
 			if (vehiculo != null)
 				System.out.println(vehiculo);
@@ -117,6 +157,9 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		System.out.println("");
 	}
 
+	/* (sin Javadoc)
+	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#abrirAlquiler()
+	 */
 	public void abrirAlquiler() {
 		Consola.mostrarCabecera("Abrir alquiler");
 		String matricula = Consola.leerMatricula();
@@ -124,7 +167,7 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		Vehiculo vehiculo = controlador.buscarVehiculo(matricula);
 		Cliente cliente = controlador.buscarCliente(dni);
 		if (vehiculo == null)
-			System.out.println("ERROR: No existe un vehiculo con esa matr�cula\n");
+			System.out.println("ERROR: No existe un vehículo con esa matrícula\n");
 		else {
 			try {
 				controlador.abrirAlquiler(cliente, vehiculo);
@@ -135,6 +178,9 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		}
 	}
 
+	/* (sin Javadoc)
+	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#cerrarAlquiler()
+	 */
 	public void cerrarAlquiler() {
 		Consola.mostrarCabecera("Cerrar alquiler");
 		String matricula = Consola.leerMatricula();
@@ -142,7 +188,7 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		String dni = Consola.leerDni();
 		Cliente cliente = controlador.buscarCliente(dni);
 		if (vehiculo == null)
-			System.out.println("ERROR: No existe un veh�culo con dicha matr�cula\n");
+			System.out.println("ERROR: No existe un vehículo con dicha matrícula\n");
 		else {
 			try {
 				controlador.cerrarAlquiler(cliente, vehiculo);
@@ -153,6 +199,9 @@ public class IUTextual implements IVistaAlquilerVehiculos {
 		}
 	}
 
+	/* (sin Javadoc)
+	 * @see alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos#listarAlquileres()
+	 */
 	public void listarAlquileres() {
 		Consola.mostrarCabecera("Listar Alquileres");
 		for (Alquiler alquiler : controlador.obtenerAlquileres()) {

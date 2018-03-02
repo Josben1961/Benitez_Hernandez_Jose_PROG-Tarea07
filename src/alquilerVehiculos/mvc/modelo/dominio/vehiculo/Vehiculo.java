@@ -4,8 +4,6 @@ package alquilerVehiculos.mvc.modelo.dominio.vehiculo;
 import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import alquilerVehiculos.mvc.modelo.dominio.DireccionPostal;
 import alquilerVehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 
 // TODO: Auto-generated Javadoc
@@ -14,32 +12,19 @@ import alquilerVehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
  */
 public abstract class Vehiculo implements Serializable {
 
-	/** The matricula. */
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+	/** Atributos */
 	private String matricula;
-
-	/** The marca. */
 	private String marca;
-
-	/** The modelo. */
 	private String modelo;
-
-	/** The disponible. */
 	private boolean disponible;
 
 	/** The datos tecnicos. */
 	protected DatosTecnicosVehiculo datosTecnicos;
 
-	/** The factor cilindrada. */
-	private final double FACTOR_CILINDRADA = 0;
-
-	/** The factor numero plazas. */
-	private final double FACTOR_NUMERO_PLAZAS = 0;
-
-	/** The factor pma. */
-	private final double FACTOR_PMA = 0;
-
 	/**
-	 * Instantiates a new vehiculo.
+	 * Instancia de un nuevo vehiculo.
 	 *
 	 * @param matricula
 	 *            the matricula
@@ -50,7 +35,7 @@ public abstract class Vehiculo implements Serializable {
 	 * @param datosTecnicos
 	 *            the datos tecnicos
 	 */
-	// Constructor con cuatro parámetros
+	// Constructor con cuatro parï¿½metros
 	public Vehiculo(String matricula, String marca, String modelo, DatosTecnicosVehiculo datosTecnicos) {
 
 		setMatricula(matricula);
@@ -61,8 +46,8 @@ public abstract class Vehiculo implements Serializable {
 	}
 
 	/**
-	 * Constructor copia de la clase Vehiculo Instantiates a new vehiculo.
-	 *
+	 * Instantiates a new vehiculo. Constructor copia
+	 * 
 	 * @param vehiculo
 	 *            the vehiculo
 	 */
@@ -141,7 +126,7 @@ public abstract class Vehiculo implements Serializable {
 		if (compruebaMatricula(matricula))
 			this.matricula = matricula;
 		else
-			throw new ExcepcionAlquilerVehiculos("La matrícula no es correcta");
+			throw new ExcepcionAlquilerVehiculos("La matrÃ­cula no es correcta");
 	}
 
 	/**
@@ -154,7 +139,7 @@ public abstract class Vehiculo implements Serializable {
 		if (marca != null && !marca.equals(""))
 			this.marca = marca;
 		else
-			throw new ExcepcionAlquilerVehiculos("La marca no es válida");
+			throw new ExcepcionAlquilerVehiculos("La marca no es vÃ¡lida");
 	}
 
 	/**
@@ -167,7 +152,7 @@ public abstract class Vehiculo implements Serializable {
 		if (modelo != null && !modelo.equals(""))
 			this.modelo = modelo;
 		else
-			throw new ExcepcionAlquilerVehiculos("El modelo no es válido");
+			throw new ExcepcionAlquilerVehiculos("El modelo no es vÃ¡lido");
 	}
 
 	/**
@@ -194,18 +179,17 @@ public abstract class Vehiculo implements Serializable {
 	 */
 	public abstract double precioEspecifico();
 
-	// Método para comprobar la matrícula introducida.
-	// Matrícula correcta: Cuatro números, espacio y tres letras mayúsculas
 	/**
-	 * Comprueba matricula.
-	 *
+	 * MÃ©todo para comprobar la matrÃ­cula introducida. MatrÃ­cula correcta: Cuatro
+	 * nÃºmeros y tres letras mayÃºsculas Comprueba matricula. Excluyendo vocales
+	 * 
 	 * @param matricula
 	 *            the matricula
 	 * @return true, if successful
 	 * @throws ExcepcionAlquilerVehiculos
 	 *             the excepcion alquiler vehiculos
+	 * 
 	 */
-	// (excluyendo vocales)
 	private boolean compruebaMatricula(String matricula) throws ExcepcionAlquilerVehiculos {
 		Pattern patron = Pattern.compile("([0-9]{4})+([BCDFGHJKLMNPQRSTVWXYZ]{3})");
 		Matcher emparejador;

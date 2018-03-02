@@ -1,6 +1,4 @@
-/*
- * 
- */
+
 package alquilerVehiculos.mvc.modelo.dominio;
 
 import java.io.Serializable;
@@ -11,90 +9,80 @@ import java.util.regex.Pattern;
 /**
  * The Class Cliente.
  */
-public class Cliente implements Serializable{
-
+public class Cliente implements Serializable {
+	
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+	
 	/** The nombre. */
 	private String nombre;
-
+	
 	/** The dni. */
 	private String dni;
-
+	
 	/** The direccion postal. */
 	private DireccionPostal direccionPostal;
-
+	
 	/** The identificador. */
 	private int identificador;
-
+	
 	/** The ultimo identificador. */
 	private static int ultimoIdentificador = 0;
-
-	/** The num clientes. */
-	private static int numClientes = 0;
 
 	/**
 	 * Instantiates a new cliente.
 	 *
-	 * @param nombre
-	 *            the nombre
-	 * @param dni
-	 *            the dni
-	 * @param direccionPostal
-	 *            the direccion postal
+	 * @param nombre the nombre
+	 * @param dni the dni
+	 * @param direccionPostal the direccion postal
 	 */
-	// Constructor con los 5 parámetros
+	// Constructor con los 5 parï¿½metros
 	public Cliente(String nombre, String dni, DireccionPostal direccionPostal) {
 		setNombre(nombre);
 		setDni(dni);
 		setDireccionPostal(direccionPostal);
 		asignarNuevoIdentificador();
-		numClientes++;
-		identificador = numClientes;
 
 	}
 
 	/**
 	 * Sets the nombre.
 	 *
-	 * @param nombre
-	 *            the new nombre
+	 * @param nombre the new nombre
 	 */
 	private void setNombre(String nombre) {
 		if (nombre != null && !nombre.equals(""))
 			this.nombre = nombre;
 		else
-			throw new ExcepcionAlquilerVehiculos("Nombre no válido");
+			throw new ExcepcionAlquilerVehiculos("Nombre no vÃ¡lido");
 	}
 
 	/**
 	 * Sets the dni.
 	 *
-	 * @param dni
-	 *            the new dni
+	 * @param dni the new dni
 	 */
 	private void setDni(String dni) {
 		if (compruebaDni(dni))
 			this.dni = dni;
 		else
-			throw new ExcepcionAlquilerVehiculos("DNI no válido");
+			throw new ExcepcionAlquilerVehiculos("DNI no vÃ¡lido");
 	}
 
 	/**
 	 * Sets the direccion postal.
 	 *
-	 * @param direccionPostal
-	 *            the new direccion postal
+	 * @param direccionPostal the new direccion postal
 	 */
 	public void setDireccionPostal(DireccionPostal direccionPostal) {
 		this.direccionPostal = new DireccionPostal(direccionPostal);
 	}
 
 	/**
-	 * Instantiates a new cliente. Constructor copia de la clase Cliente
-	 * 
-	 * @param cliente
-	 *            the cliente
+	 * Instantiates a new cliente.
+	 *
+	 * @param cliente the cliente
 	 */
-
 	public Cliente(Cliente cliente) {
 		nombre = cliente.getNombre();
 		dni = cliente.getDni();
@@ -109,6 +97,18 @@ public class Cliente implements Serializable{
 	private void asignarNuevoIdentificador() {
 		ultimoIdentificador++;
 		identificador = ultimoIdentificador;
+	}
+
+	/**
+	 * Aumentar ultimo identificador.
+	 *
+	 * @param cantidad the cantidad
+	 */
+	public static void aumentarUltimoIdentificador(int cantidad) {
+		if (cantidad > 0)
+			ultimoIdentificador += cantidad;
+		else
+			throw new ExcepcionAlquilerVehiculos("SÃ³lo puedo aumentar el Ãºltimo identificador");
 	}
 
 	/**
@@ -150,13 +150,11 @@ public class Cliente implements Serializable{
 	/**
 	 * Comprueba dni.
 	 *
-	 * @param dni
-	 *            the dni
+	 * @param dni the dni
 	 * @return true, if successful
-	 * @throws ExcepcionAlquilerVehiculos
-	 *             the excepcion alquiler vehiculos
+	 * @throws ExcepcionAlquilerVehiculos the excepcion alquiler vehiculos
 	 */
-	// Método para comprobar el DNI introducido
+	// MÃ©todo para comprobar el DNI introducido
 	private boolean compruebaDni(String dni) throws ExcepcionAlquilerVehiculos {
 		Pattern patron = Pattern.compile("[0-9]{8}[A-Z]");
 		Matcher emparejador;
@@ -165,11 +163,9 @@ public class Cliente implements Serializable{
 		return emparejador.matches();
 
 	}
-	// Método toString que representa al cliente
+	// MÃ©todo toString que representa al cliente
 
-	/*
-	 * (sin Javadoc)
-	 * 
+	/* (sin Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

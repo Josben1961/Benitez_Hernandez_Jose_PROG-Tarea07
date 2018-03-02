@@ -1,59 +1,48 @@
-/*
- * 
- */
+
 package alquilerVehiculos.mvc.modelo.dominio;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import alquilerVehiculos.mvc.modelo.dominio.vehiculo.DatosTecnicosVehiculo;
-import alquilerVehiculos.mvc.modelo.dominio.vehiculo.TipoVehiculo;
-import alquilerVehiculos.mvc.modelo.dominio.vehiculo.Turismo;
 import alquilerVehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Alquiler.
  */
-public class Alquiler implements Serializable{
+public class Alquiler implements Serializable {
 
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+	
 	/** The cliente. */
 	private Cliente cliente;
-
+	
 	/** The vehiculo. */
 	private Vehiculo vehiculo;
-
-	/** The datos tecnicos. */
-	private DatosTecnicosVehiculo datosTecnicos;
-
+	
 	/** The fecha. */
 	private Date fecha;
-
+	
 	/** The dias. */
 	private int dias;
-
+	
 	/** The formato fecha. */
 	private final SimpleDateFormat FORMATO_FECHA = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
+	
 	/** The ms dia. */
 	private final int MS_DIA = 1000 * 60 * 60 * 24;
-
+	
 	/** The precio dia. */
 	private final double PRECIO_DIA = 30.0;
-
-	/** The disponible. */
-	private boolean disponible;
 
 	/**
 	 * Instantiates a new alquiler.
 	 *
-	 * @param cliente
-	 *            the cliente
-	 * @param vehiculo
-	 *            the vehiculo
+	 * @param cliente the cliente
+	 * @param vehiculo the vehiculo
 	 */
-	// Constructor con dos parámetros
+	// Constructor con dos parÃ¡metros
 	public Alquiler(Cliente cliente, Vehiculo vehiculo) {
 		setCliente(cliente);
 		setVehiculo(vehiculo);
@@ -65,8 +54,7 @@ public class Alquiler implements Serializable{
 	/**
 	 * Sets the cliente.
 	 *
-	 * @param cliente
-	 *            the new cliente
+	 * @param cliente the new cliente
 	 */
 	private void setCliente(Cliente cliente) {
 		if (cliente != null)
@@ -78,14 +66,13 @@ public class Alquiler implements Serializable{
 	/**
 	 * Sets the vehiculo.
 	 *
-	 * @param vehiculo
-	 *            the new vehiculo
+	 * @param vehiculo the new vehiculo
 	 */
 	private void setVehiculo(Vehiculo vehiculo) {
 		if (vehiculo != null)
 			this.vehiculo = vehiculo;
 		else
-			throw new ExcepcionAlquilerVehiculos("El alquiler debe tener un vehículo identificado");
+			throw new ExcepcionAlquilerVehiculos("El alquiler debe tener un vehï¿½culo identificado");
 	}
 
 	/**
@@ -93,7 +80,7 @@ public class Alquiler implements Serializable{
 	 *
 	 * @return the cliente
 	 */
-	// Métodos getters
+	// MÃ©todos getters
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -141,7 +128,7 @@ public class Alquiler implements Serializable{
 	 */
 	public double getPrecio() {
 
-		return PRECIO_DIA * dias;
+		return PRECIO_DIA * getDias() + vehiculo.precioEspecifico();
 	}
 
 	/**
@@ -159,10 +146,8 @@ public class Alquiler implements Serializable{
 	/**
 	 * Dif dias.
 	 *
-	 * @param fechaFin
-	 *            the fecha fin
-	 * @param fechaInicio
-	 *            the fecha inicio
+	 * @param fechaFin the fecha fin
+	 * @param fechaInicio the fecha inicio
 	 * @return the int
 	 */
 	private int difDias(Date fechaFin, Date fechaInicio) {
@@ -171,15 +156,13 @@ public class Alquiler implements Serializable{
 		return (int) dias + 1;
 	}
 
-	/*
-	 * 
-	 * 
+	/* (sin Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Alquiler [Cliente = " + getCliente() + " Vehiculo = " + getVehiculo() + " Fecha = " + getFecha()
-				+ ", Dias = " + getDias() + ", Precio = " + getPrecio() + "]\n\n";
+		return "Alquiler [Cliente = " + getCliente() + " Vehiculo = " + getVehiculo() + " Fecha = "
+				+ FORMATO_FECHA.format(fecha) + ", Dias = " + getDias() + ", Precio = " + getPrecio() + "]\n\n";
 	}
 
 }

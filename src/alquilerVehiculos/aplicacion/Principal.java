@@ -1,6 +1,4 @@
-/*
- * 
- */
+
 package alquilerVehiculos.aplicacion;
 
 import alquilerVehiculos.mvc.controlador.ControladorAlquilerVehiculos;
@@ -12,7 +10,7 @@ import alquilerVehiculos.mvc.vista.IVistaAlquilerVehiculos;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class Principal.
+ * Clase Principal.
  */
 public class Principal {
 
@@ -22,6 +20,7 @@ public class Principal {
 	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
+
 		IModeloAlquilerVehiculos modelo = new ModeloAlquilerVehiculos();
 		IVistaAlquilerVehiculos vista = new IUTextual();
 		IControladorAlquilerVehiculos controlador = new ControladorAlquilerVehiculos(vista, modelo);

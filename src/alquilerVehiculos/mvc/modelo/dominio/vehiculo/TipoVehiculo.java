@@ -1,10 +1,7 @@
-/*
- * 
- */
+
 package alquilerVehiculos.mvc.modelo.dominio.vehiculo;
 
 import alquilerVehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
-
 
 // TODO: Auto-generated Javadoc
 /**
@@ -21,7 +18,7 @@ public enum TipoVehiculo {
 		}
 
 	},
-	
+
 	/** The de carga. */
 	DE_CARGA("DeCarga") {
 
@@ -33,7 +30,7 @@ public enum TipoVehiculo {
 	},
 
 	/** The autobus. */
-	AUTOBUS("Autobus") {
+	AUTOBUS("AutobÃºs") {
 
 		public Autobus getInstancia(String matricula, String marca, String modelo,
 				DatosTecnicosVehiculo datosTecnicos) {
@@ -53,7 +50,7 @@ public enum TipoVehiculo {
 	private TipoVehiculo(String tipo) {
 		this.tipo = tipo;
 	}
-	
+
 	/**
 	 * Gets the instancia.
 	 *
@@ -75,7 +72,7 @@ public enum TipoVehiculo {
 		if (esOrdinalValido(ordinal))
 			return values()[ordinal];
 		else
-			throw new ExcepcionAlquilerVehiculos("Ordinal de la opción no válido");
+			throw new ExcepcionAlquilerVehiculos("Ordinal de la opciÃ³n no vÃ¡lido");
 	}
 
 	/**
@@ -88,7 +85,7 @@ public enum TipoVehiculo {
 		return (ordinal >= 0 && ordinal <= values().length - 1) ? true : false;
 	}
 
-	/* 
+	/* (sin Javadoc)
 	 * @see java.lang.Enum#toString()
 	 */
 	public String toString() {

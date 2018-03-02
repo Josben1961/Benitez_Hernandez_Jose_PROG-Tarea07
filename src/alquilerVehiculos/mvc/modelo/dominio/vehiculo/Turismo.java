@@ -1,6 +1,4 @@
-/*
- * 
- */
+
 package alquilerVehiculos.mvc.modelo.dominio.vehiculo;
 
 // TODO: Auto-generated Javadoc
@@ -8,6 +6,9 @@ package alquilerVehiculos.mvc.modelo.dominio.vehiculo;
  * The Class Turismo.
  */
 public class Turismo extends Vehiculo {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 	
 	/** The factor turismo. */
 	private double factorTurismo = 0.0;
@@ -33,15 +34,15 @@ public class Turismo extends Vehiculo {
 		super(turismo);
 	}
 
-	/* 
+	/* (sin Javadoc)
 	 * @see alquilerVehiculos.mvc.modelo.dominio.vehiculo.Vehiculo#getTipoVehiculo()
 	 */
 	public TipoVehiculo getTipoVehiculo() {
-		// TODO Apéndice de método generado automáticamente
+
 		return TipoVehiculo.TURISMO;
 	}
 
-	/* 
+	/* (sin Javadoc)
 	 * @see alquilerVehiculos.mvc.modelo.dominio.vehiculo.Vehiculo#precioEspecifico()
 	 */
 	public double precioEspecifico() {

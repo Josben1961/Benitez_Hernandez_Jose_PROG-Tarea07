@@ -1,6 +1,4 @@
-/*
- * 
- */
+
 package alquilerVehiculos.mvc.vista;
 
 import alquilerVehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
@@ -19,7 +17,7 @@ public enum Opcion {
 	},
 
 	/** The anadir cliente. */
-	ANADIR_CLIENTE("Añadir cliente") {
+	ANADIR_CLIENTE("AÃ±adir cliente") {
 		public void ejecutar() {
 			vista.anadirCliente();
 		}
@@ -47,28 +45,28 @@ public enum Opcion {
 	},
 
 	/** The anadir vehiculo. */
-	ANADIR_VEHICULO("Añadir vehículo") {
+	ANADIR_VEHICULO("AÃ±adir vehÃ­culo") {
 		public void ejecutar() {
 			vista.anadirVehiculo();
 		}
 	},
 
 	/** The borrar vehiculo. */
-	BORRAR_VEHICULO("Borrar vehículo") {
+	BORRAR_VEHICULO("Borrar vehÃ­culo") {
 		public void ejecutar() {
 			vista.borrarVehiculo();
 		}
 	},
 
 	/** The buscar vehiculo. */
-	BUSCAR_VEHICULO("Buscar vehículo") {
+	BUSCAR_VEHICULO("Buscar vehÃ­culo") {
 		public void ejecutar() {
 			vista.buscarVehiculo();
 		}
 	},
 
 	/** The listar vehiculos. */
-	LISTAR_VEHICULOS("Listar vehículos") {
+	LISTAR_VEHICULOS("Listar vehÃ­culos") {
 		public void ejecutar() {
 			vista.listarVehiculos();
 		}
@@ -97,15 +95,14 @@ public enum Opcion {
 
 	/** The mensaje. */
 	private String mensaje;
-
+	
 	/** The vista. */
 	private static IVistaAlquilerVehiculos vista;
 
 	/**
 	 * Instantiates a new opcion.
 	 *
-	 * @param mensaje
-	 *            the mensaje
+	 * @param mensaje the mensaje
 	 */
 	private Opcion(String mensaje) {
 		this.mensaje = mensaje;
@@ -128,14 +125,13 @@ public enum Opcion {
 	/**
 	 * Sets the vista.
 	 *
-	 * @param vista
-	 *            the new vista
+	 * @param vista the new vista
 	 */
-	public static void setVista(IVistaAlquilerVehiculos vista) {
+	public static void setVista(IUTextual vista) {
 		Opcion.vista = vista;
 	}
 
-	/*
+	/* (sin Javadoc)
 	 * @see java.lang.Enum#toString()
 	 */
 	public String toString() {
@@ -145,22 +141,20 @@ public enum Opcion {
 	/**
 	 * Gets the opcion segun oridnal.
 	 *
-	 * @param ordinal
-	 *            the ordinal
+	 * @param ordinal the ordinal
 	 * @return the opcion segun oridnal
 	 */
 	public static Opcion getOpcionSegunOridnal(int ordinal) {
 		if (esOrdinalValido(ordinal))
 			return values()[ordinal];
 		else
-			throw new ExcepcionAlquilerVehiculos("Opción no válida");
+			throw new ExcepcionAlquilerVehiculos("OpciÃ³n no vÃ¡lida");
 	}
 
 	/**
 	 * Es ordinal valido.
 	 *
-	 * @param ordinal
-	 *            the ordinal
+	 * @param ordinal the ordinal
 	 * @return true, if successful
 	 */
 	public static boolean esOrdinalValido(int ordinal) {

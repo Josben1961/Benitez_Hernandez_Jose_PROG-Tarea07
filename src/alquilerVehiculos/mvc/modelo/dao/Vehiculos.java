@@ -13,53 +13,79 @@ import alquilerVehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 import alquilerVehiculos.mvc.modelo.dominio.vehiculo.TipoVehiculo;
 import alquilerVehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 
+// TODO: Auto-generated Javadoc
+/**
+ * Clase Vehiculos. configuraci√≥n de los veh√≠culos
+ */
 public class Vehiculos {
 
 	private Vehiculo[] vehiculos;
 
-	private final int MAX_VEHICULOS = 100;
+	private final int MAX_VEHICULOS = 10;
+
 	private final String FICHERO_VEHICULOS = "datos/vehiculos.dat";
 	
+	/**
+	 * Instanciado de nuevos vehiculos.
+	 */
 	public Vehiculos() {
 		vehiculos = new Vehiculo[MAX_VEHICULOS];
 	}
 
+	/**
+	 * Gets de vehiculos.
+	 *
+	 * @return  vehiculos
+	 */
 	public Vehiculo[] getVehiculos() {
 		return vehiculos.clone();
 	}
 	
+	/**
+	 * Leer vehiculos.
+	 */
 	public void leerVehiculos() {
 		File fichero = new File(FICHERO_VEHICULOS);
 		ObjectInputStream entrada;
 		try {
 			entrada = new ObjectInputStream(new FileInputStream(fichero));
 			try {
-				vehiculos = (Vehiculo[])entrada.readObject();
+				vehiculos = (Vehiculo[]) entrada.readObject();
 				entrada.close();
-				System.out.println("Leido fichero vehiculos correctamente.");
+				System.out.println("Fichero veh√≠culos le√≠do correctamente.");
 			} catch (ClassNotFoundException e) {
-				System.out.println("No puedo encontrar la clase que tengo que leer.");
+				System.out.println("Imposible encontrar el archivo que tengo que leer.");
 			} catch (IOException e) {
 				System.out.println("Error inesperado de Entrada/Salida.");
 			}
 		} catch (IOException e) {
-			System.out.println("Imposible abrir el fihero de vehÌculos.");
+			System.out.println("Imposible abrir el fihero de veh√≠culos.");
 		}
 	}
+	
+	/**
+	 * Escribir vehiculos.
+	 */
 	public void escribirVehiculos() {
 		File fichero = new File(FICHERO_VEHICULOS);
 		try {
 			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(fichero));
 			salida.writeObject((Vehiculo[])vehiculos);
 			salida.close();
-			System.out.println("Escrito fichero vehiculos correctamente");
+			System.out.println("Fichero vehiculos escrito correctamente");
 		} catch (FileNotFoundException e) {
-			System.out.println("Imposible crear el fichero de vehÌculos");
+			System.out.println("Imposible crear el fichero de veh√≠culos");
 		} catch (IOException e) {
 			System.out.println("Error inesperado de Entrada/Salida");
 		}
 	}
 
+	/**
+	 *  M√©todo para a√±adir vehiculo.
+	 *
+	 * @param vehiculo de la clase Vehiculo
+	 * @param tipoVehiculo de la clase TipoVehiculo
+	 */
 	public void anadirVehiculo(Vehiculo vehiculo, TipoVehiculo tipoVehiculo) {
 		int indice = buscarPrimerIndiceLibreComprobandoExistencia(vehiculo);
 		if (indiceNoSuperaTamano(indice)) {
@@ -68,7 +94,7 @@ public class Vehiculos {
 			vehiculo.setDisponible(true);
 
 		} else
-			throw new ExcepcionAlquilerVehiculos("El array de vehÌculos est· lleno.");
+			throw new ExcepcionAlquilerVehiculos("El array de veh√≠culos est√° lleno.");
 	}
 
 	private int buscarPrimerIndiceLibreComprobandoExistencia(Vehiculo vehiculo) {
@@ -78,7 +104,7 @@ public class Vehiculos {
 			if (vehiculos[indice] == null)
 				vehiculoEncontrado = true;
 			else if (vehiculos[indice].getMatricula().equals(vehiculo.getMatricula()))
-				throw new ExcepcionAlquilerVehiculos("Ya existe un vehÌculo con esa matrÌcula");
+				throw new ExcepcionAlquilerVehiculos("Ya existe un veh√≠culo con esa matr√≠cula");
 			else
 				indice++;
 		}
@@ -89,12 +115,17 @@ public class Vehiculos {
 		return indice < vehiculos.length;
 	}
 
+	/**
+	 * Borrar vehiculo.
+	 *
+	 * @param matricula 
+	 */
 	public void borrarVehiculo(String matricula) {
 		int indice = buscarIndiceVehiculo(matricula);
 		if (indiceNoSuperaTamano(indice)) {
 			desplazarUnaPosicionHaciaIzquierda(indice);
 		} else {
-			throw new ExcepcionAlquilerVehiculos("El vehÌculo a borrar no existe");
+			throw new ExcepcionAlquilerVehiculos("El veh√≠culo a borrar no existe");
 		}
 	}
 
@@ -116,9 +147,15 @@ public class Vehiculos {
 		}
 	}
 
+	/**
+	 * Buscar vehiculo.
+	 *
+	 * @param matricula 
+	 * @return vehiculo
+	 */
 	public Vehiculo buscarVehiculo(String matricula) {
+		
 		int indice = buscarIndiceVehiculo(matricula);
-		Vehiculo vehiculo = null;
 		if (indiceNoSuperaTamano(indice)) {
 			return vehiculos[indice];
 

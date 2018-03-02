@@ -1,6 +1,4 @@
-/*
- * 
- */
+
 package alquilerVehiculos.mvc.vista;
 
 import alquilerVehiculos.mvc.controlador.IControladorAlquilerVehiculos;
@@ -14,8 +12,7 @@ public interface IVistaAlquilerVehiculos {
 	/**
 	 * Sets the controlador.
 	 *
-	 * @param controlador
-	 *            the new controlador
+	 * @param controlador the new controlador
 	 */
 	void setControlador(IControladorAlquilerVehiculos controlador);
 

@@ -1,6 +1,4 @@
-/*
- * 
- */
+
 package alquilerVehiculos.mvc.modelo.dominio.vehiculo;
 
 // TODO: Auto-generated Javadoc
@@ -9,48 +7,43 @@ package alquilerVehiculos.mvc.modelo.dominio.vehiculo;
  */
 public class Autobus extends Vehiculo {
 
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+	
 	/** The factor autobus. */
 	private double factorAutobus = 0.0;
 
 	/**
 	 * Instantiates a new autobus.
 	 *
-	 * @param matricula
-	 *            the matricula
-	 * @param marca
-	 *            the marca
-	 * @param modelo
-	 *            the modelo
-	 * @param datosTecnicos
-	 *            the datos tecnicos
+	 * @param matricula the matricula
+	 * @param marca the marca
+	 * @param modelo the modelo
+	 * @param datosTecnicos the datos tecnicos
 	 */
 	public Autobus(String matricula, String marca, String modelo, DatosTecnicosVehiculo datosTecnicos) {
 		super(matricula, marca, modelo, datosTecnicos);
-		// TODO Apéndice de constructor generado automáticamente
 	}
 
 	/**
 	 * Instantiates a new autobus.
 	 *
-	 * @param autobus
-	 *            the autobus
+	 * @param autobus the autobus
 	 */
 	public Autobus(Turismo autobus) {
 		super(autobus);
 	}
 
-	/*
+	/* (sin Javadoc)
 	 * @see alquilerVehiculos.mvc.modelo.dominio.vehiculo.Vehiculo#getTipoVehiculo()
 	 */
 	@Override
 	public TipoVehiculo getTipoVehiculo() {
-		// TODO Apéndice de método generado automáticamente
 		return TipoVehiculo.AUTOBUS;
 	}
 
-	/*
-	 * @see
-	 * alquilerVehiculos.mvc.modelo.dominio.vehiculo.Vehiculo#precioEspecifico()
+	/* (sin Javadoc)
+	 * @see alquilerVehiculos.mvc.modelo.dominio.vehiculo.Vehiculo#precioEspecifico()
 	 */
 	@Override
 	public double precioEspecifico() {

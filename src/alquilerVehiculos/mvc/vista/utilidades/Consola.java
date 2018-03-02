@@ -1,14 +1,10 @@
-/*
- * 
- */
+
 package alquilerVehiculos.mvc.vista.utilidades;
 
 import alquilerVehiculos.mvc.modelo.dominio.Cliente;
 import alquilerVehiculos.mvc.modelo.dominio.DireccionPostal;
-import alquilerVehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 import alquilerVehiculos.mvc.modelo.dominio.vehiculo.DatosTecnicosVehiculo;
 import alquilerVehiculos.mvc.modelo.dominio.vehiculo.TipoVehiculo;
-import alquilerVehiculos.mvc.modelo.dominio.vehiculo.Turismo;
 import alquilerVehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 import alquilerVehiculos.mvc.vista.Opcion;
 
@@ -22,7 +18,7 @@ public class Consola {
 	 * Mostrar menu.
 	 */
 	public static void mostrarMenu() {
-		mostrarCabecera("Alquiler de Vehículos");
+		mostrarCabecera("Alquiler de VehÃ­culos");
 		for (Opcion opcion : Opcion.values()) {
 			System.out.println(opcion);
 		}
@@ -31,8 +27,7 @@ public class Consola {
 	/**
 	 * Mostrar cabecera.
 	 *
-	 * @param mensaje
-	 *            the mensaje
+	 * @param mensaje the mensaje
 	 */
 	public static void mostrarCabecera(String mensaje) {
 		System.out.printf("%n%s%n", mensaje);
@@ -47,7 +42,7 @@ public class Consola {
 	public static int elegirOpcion() {
 		int ordinalOpcion;
 		do {
-			System.out.print("\nElige una opción: ");
+			System.out.print("\nElige una opciÃ³n: ");
 			ordinalOpcion = Entrada.entero();
 		} while (!Opcion.esOrdinalValido(ordinalOpcion));
 		return ordinalOpcion;
@@ -68,7 +63,7 @@ public class Consola {
 		String calle = Entrada.cadena();
 		System.out.print("Localidad: ");
 		String localidad = Entrada.cadena();
-		System.out.print("Código postal: ");
+		System.out.print("CÃ³digo postal: ");
 		String codigoPostal = Entrada.cadena();
 		cliente = new Cliente(nombre, dni, new DireccionPostal(calle, localidad, codigoPostal));
 		return cliente;
@@ -92,7 +87,7 @@ public class Consola {
 	 */
 	public static Vehiculo leerVehiculo() {
 		Vehiculo nuevoVehiculo = null;
-		System.out.print("Matrícula: ");
+		System.out.print("MatrÃ­cula: ");
 		String matricula = Entrada.cadena();
 		System.out.print("Marca: ");
 		String marca = Entrada.cadena();
@@ -100,9 +95,9 @@ public class Consola {
 		String modelo = Entrada.cadena();
 		System.out.print("Cilindrada: ");
 		int cilindrada = Entrada.entero();
-		System.out.print("Número de plazas: ");
+		System.out.print("NÃºmero de plazas: ");
 		int numeroPlazas = Entrada.entero();
-		System.out.print("Peso máximo autorizado: ");
+		System.out.print("Peso mÃ¡ximo autorizado: ");
 		int pma = Entrada.entero();
 		int ordinalTipoVehiculo = 0;
 		nuevoVehiculo = TipoVehiculo.getTipoVehiculoSegunOrdinal(ordinalTipoVehiculo).getInstancia(matricula, marca,
@@ -116,7 +111,7 @@ public class Consola {
 	 * @return the string
 	 */
 	public static String leerMatricula() {
-		System.out.print("Introduce la matrícula del vehículo: ");
+		System.out.print("Introduce la matrÃ­cula del vehÃ­culo: ");
 		String matriculaBorrar = Entrada.cadena();
 		return matriculaBorrar;
 	}
@@ -129,7 +124,7 @@ public class Consola {
 	public static int elegirTipoVehiculo() {
 		int ordinalTipoVehiculo;
 		do {
-			System.out.printf("Introduce el tipo de vehículo: (%s)", obtenerTiposVehiculo());
+			System.out.printf("Introduce el tipo de vehÃ­culo: (%s)", obtenerTiposVehiculo());
 			ordinalTipoVehiculo = Entrada.entero();
 		} while (!TipoVehiculo.esOrdinalValido(ordinalTipoVehiculo));
 		return ordinalTipoVehiculo;

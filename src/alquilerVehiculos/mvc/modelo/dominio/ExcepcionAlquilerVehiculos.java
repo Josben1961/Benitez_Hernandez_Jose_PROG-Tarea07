@@ -1,6 +1,4 @@
-/*
- * 
- */
+
 package alquilerVehiculos.mvc.modelo.dominio;
 
 // TODO: Auto-generated Javadoc
@@ -9,14 +7,13 @@ package alquilerVehiculos.mvc.modelo.dominio;
  */
 public class ExcepcionAlquilerVehiculos extends RuntimeException {
 
-	/** The mensaje. */
-	private String mensaje;
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Instantiates a new excepcion alquiler vehiculos.
 	 *
-	 * @param mensaje
-	 *            the mensaje
+	 * @param mensaje the mensaje
 	 */
 	public ExcepcionAlquilerVehiculos(String mensaje) {
 
